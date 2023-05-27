@@ -1,5 +1,6 @@
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>How old are you?</title>
   <style>
     body {
@@ -9,10 +10,20 @@
       height: 100vh;
       margin: 0;
       background: #f1f1f1;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 400px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     h1 {
       text-align: center;
+      margin-top: 0;
     }
 
     label {
@@ -32,7 +43,9 @@
       color: #fff;
       padding: 10px 20px;
       border: none;
+      border-radius: 4px;
       cursor: pointer;
+      width: 100%;
     }
 
     button:hover {
@@ -41,6 +54,7 @@
 
     #result {
       text-align: center;
+      margin-top: 10px;
     }
   </style>
   <script>
@@ -55,11 +69,10 @@
   </script>
 </head>
 <body>
-  <div>
+  <div class="container">
     <h1>How old are you?</h1>
     <label for="birthdate">Enter your date of birth to find out:</label>
     <input type="date" id="birthdate">
-    <br>
     <button onclick="calculateAge()">Calculate</button>
     <p id="result"></p>
   </div>
