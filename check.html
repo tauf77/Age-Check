@@ -1,26 +1,67 @@
 <html>
 <head>
   <title>How old are you?</title>
-</head>
-<body>
-  <h1>How old are you?</h1>
-  <label for="birthdate">Enter your date of birth to find out:</label>
-  <input type="date" id="birthdate">
-  <button type="button" onclick="calculateAge()">Calculate</button>
-  <p id="result"></p>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #f1f1f1;
+    }
 
+    h1 {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    input[type="date"] {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background-color: blue;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+
+    #result {
+      text-align: center;
+    }
+  </style>
   <script>
     function calculateAge() {
-      var birthDate = document.getElementById("birthdate").value;
+      var birthDate = new Date(document.getElementById("birthdate").value);
       var today = new Date();
-      var birthDateObj = new Date(birthDate);
-      var age = today.getFullYear() - birthDateObj.getFullYear();
-      var monthDiff = today.getMonth() - birthDateObj.getMonth();
-      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDateObj.getDate())) {
-        age--;
-      }
-      document.getElementById("result").innerHTML = "Your age is: " + age;
+      var ageInMilliseconds = today - birthDate;
+      var ageInYears = Math.floor(ageInMilliseconds / (1000 * 60 * 60 * 24 * 365));
+      var remainingDays = Math.floor(ageInMilliseconds / (1000 * 60 * 60 * 24)) % 365;
+      document.getElementById("result").innerHTML = "Your age is: " + ageInYears + " years and " + remainingDays + " days";
     }
   </script>
+</head>
+<body>
+  <div>
+    <h1>How old are you?</h1>
+    <label for="birthdate">Enter your date of birth to find out:</label>
+    <input type="date" id="birthdate">
+    <br>
+    <button onclick="calculateAge()">Calculate</button>
+    <p id="result"></p>
+  </div>
 </body>
 </html>
